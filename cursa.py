@@ -2,8 +2,6 @@ import curses # imports curses module, that let's us manipulate the terminal
 from curses import wrapper
 import time 
 
-
-
 def main(stdscr):
     #initalise colors
     curses.init_pair(1, curses.COLOR_RED, curses.COLOR_BLACK)
@@ -19,14 +17,42 @@ def main(stdscr):
     stdscr.clear()
     #stdscr.refresh()
     # making a field
-    for f in range( 20):
-       stdscr.addstr(f, 0, "+")
-       stdscr.addstr(f, 19, "+")
-       stdscr.addstr(0, f, "+")
-       stdscr.addstr(20, f, "+")
+    stdscr.vline(0,0,"+",20)
+    stdscr.vline(0,20,"+",20)
+    stdscr.hline(0,0,"+", 20)
+    stdscr.hline(19,0,"+", 20)
+
+    text = ["Never", "gonna", "give ", "you  ", "up!  ", "     "]
+    for i in text:
+        stdscr.addstr(9, 9, i, RED_AND_BLACK)
+        stdscr.refresh()
+        time.sleep(1.5)
+    
+    stdscr.addstr(21,0, "Type your favorite 5-letter word: ")
+    inputed_text = ["","","", "", ""]
+    for i in range(5):
+        inputed_text[i] = stdscr.getch(21, 35+i)
+        stdscr.addch(21, 35+i, inputed_text[i])
+        stdscr.refresh()
+
+    counter_var = 0
+    start_position = [3,2]
+    for i in inputed_text:
+        stdscr.addch(start_position[0], start_position[1]+counter_var, i, GREEN_AND_BLACK)
+        stdscr.refresh()
+        time.sleep(1)
+        counter_var += 1
+
+    time.sleep(3) # a bit waity waity
+
+    #clearing and creating the field again
+    stdscr.clear()
+    stdscr.vline(0,0,"+",20)
+    stdscr.vline(0,20,"+",20)
+    stdscr.hline(0,0,"+", 20)
+    stdscr.hline(19,0,"+", 20)
     stdscr.refresh()
 
-    
 
     stdscr.getch()
 
