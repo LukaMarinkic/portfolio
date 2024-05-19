@@ -12,7 +12,7 @@ def main(stdscr):
     GREEN_FONT = curses.color_pair(2)
 
     c = 15 
-    t = 0.2
+    t = 0.088
 
     for f in range(2*c):
         stdscr.addch(0,f,"+")
@@ -34,16 +34,24 @@ def main(stdscr):
         stdscr.refresh()
         time.sleep(t)
 
-    current_ch = "r"
+    current_ch = "f"
+    current_ch_is_not_space = True
     Question = "blabla"
     stdscr.addstr(16,2,Question,GREEN_FONT)
+    word = []
     pos = 3
-    while current_ch!= " ":
+    while current_ch_is_not_space:
         current_ch = stdscr.getch(16,pos+len(Question))
-        stdscr.addch(16,pos+len(Question),current_ch)
+        word.append(current_ch)
+        stdscr.addch(16,pos+len(Question),current_ch, RED_FONT)
         pos += 1
         stdscr.refresh()
+        current_ch_is_not_space = current_ch != 32 
 
+    if word == "Mercedes":
+        print("Never gonna give you up")
+
+    stdscr.clear()
     stdscr.getch(16,2)
 
 
