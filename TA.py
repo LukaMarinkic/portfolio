@@ -34,15 +34,17 @@ def main(stdscr):
         stdscr.refresh()
         time.sleep(t)
 
-    current_ch = "r"
+    current_ch = "f"
+    current_ch_is_not_space = True
     Question = "blabla"
     stdscr.addstr(16,2,Question,GREEN_FONT)
     pos = 3
-    while current_ch!= " ":
+    while current_ch_is_not_space:
         current_ch = stdscr.getch(16,pos+len(Question))
         stdscr.addch(16,pos+len(Question),current_ch)
         pos += 1
         stdscr.refresh()
+        current_ch_is_not_space = len(current_ch) != 32
 
     stdscr.getch(16,2)
 
