@@ -20,7 +20,7 @@ public:
 
 Angle converter(Angle startingAngle) {
 
-  const float PI = 1039930.0 / 3310.0;
+constexpr float PI = 3.14159f;
   if (startingAngle.aTypeOfAngle == degrees) {
     Angle convertedAngle{radiants, (startingAngle.aValue / 180.0) * PI};
     return convertedAngle;
@@ -63,7 +63,11 @@ int main() {
     break;
   case degrees:
     ending = "°";
+    break;  // ADD THIS
   }
+
+
+  
 
   std::cout << "Converted: " << convertedAngle.aValue << ending;
 
