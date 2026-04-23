@@ -20,7 +20,7 @@ public:
 
 Angle converter(Angle startingAngle) {
 
-constexpr float PI = 3.14159f;
+float PI = 3.14159f;
   if (startingAngle.aTypeOfAngle == degrees) {
     Angle convertedAngle{radiants, (startingAngle.aValue / 180.0) * PI};
     return convertedAngle;
